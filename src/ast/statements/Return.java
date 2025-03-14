@@ -2,6 +2,7 @@ package ast.statements;
 
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
+import visitor.Visitor;
 
 public class Return extends AbstractLocutable implements Statement {
     private Expression returnPart;
@@ -23,5 +24,10 @@ public class Return extends AbstractLocutable implements Statement {
 
     public Expression getReturnPart() {
         return returnPart;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

@@ -1,6 +1,7 @@
 package ast.expressions;
 
 import ast.AbstractLocutable;
+import visitor.Visitor;
 
 public class IntLiteral extends AbstractExpression {
 
@@ -17,5 +18,9 @@ public class IntLiteral extends AbstractExpression {
 
     private void setValue(int value) {
         this.value = value;
+    }
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

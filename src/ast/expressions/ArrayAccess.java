@@ -1,6 +1,7 @@
 package ast.expressions;
 
 import ast.AbstractLocutable;
+import visitor.Visitor;
 
 public class ArrayAccess extends AbstractExpression {
     private Expression arrayExpression;
@@ -29,5 +30,10 @@ public class ArrayAccess extends AbstractExpression {
 
     public Expression getIndexExpression() {
         return indexExpression;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

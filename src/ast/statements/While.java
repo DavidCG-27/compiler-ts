@@ -2,6 +2,7 @@ package ast.statements;
 
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,9 @@ public class While extends AbstractLocutable implements Statement{
         if(condition == null)
             throw new IllegalArgumentException("The condition cannot be null");
         this.condition = condition;
+    }
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

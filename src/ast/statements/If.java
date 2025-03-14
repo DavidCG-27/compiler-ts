@@ -2,6 +2,7 @@ package ast.statements;
 
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +49,10 @@ public class If extends AbstractLocutable implements Statement {
         if(elsePart == null)
             throw new IllegalArgumentException("Null expression");
         this.elsePart = new ArrayList<>(elsePart);
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

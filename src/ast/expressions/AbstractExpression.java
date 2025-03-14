@@ -2,7 +2,7 @@ package ast.expressions;
 
 import ast.AbstractLocutable;
 
-public class AbstractExpression extends AbstractLocutable implements Expression {
+public abstract class AbstractExpression extends AbstractLocutable implements Expression {
 
     private boolean lvalue;
 

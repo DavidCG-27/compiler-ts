@@ -1,6 +1,7 @@
 package ast.expressions;
 
 import ast.AbstractLocutable;
+import visitor.Visitor;
 
 public class FieldAccess extends AbstractExpression {
     private String fillName;
@@ -28,5 +29,9 @@ public class FieldAccess extends AbstractExpression {
 
     public Expression getLeft() {
         return left;
+    }
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

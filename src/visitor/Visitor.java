@@ -1,4 +1,5 @@
 package visitor;
+import ast.Program;
 import ast.definitions.*;
 import ast.expressions.*;
 import ast.statements.*;
@@ -32,5 +33,7 @@ public interface Visitor<RT, PT> {
     public RT visit(VarDefinition v, PT p);
     public RT visit(FunctionDefinition f, PT p);
 
+    // Program
+    public RT visit(Program a, PT p);
 
 }

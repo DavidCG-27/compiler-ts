@@ -3,6 +3,7 @@ package ast.statements;
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
 import ast.expressions.Variable;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +40,10 @@ public class Invocation extends AbstractLocutable implements Statement, Expressi
             throw new IllegalArgumentException("name cannot be null");
         }
         this.name = name;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

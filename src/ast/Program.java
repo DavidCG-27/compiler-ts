@@ -1,6 +1,7 @@
 package ast;
 
 import ast.definitions.Definition;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,5 +12,10 @@ public class Program implements ASTNode{
         if (definitions == null)
             throw new IllegalArgumentException("Definitions cannot be null");
         this.definitions = new ArrayList<>(definitions);
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

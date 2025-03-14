@@ -2,6 +2,7 @@ package ast.definitions;
 
 import ast.statements.Statement;
 import ast.types.Type;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +23,10 @@ public class FunctionDefinition extends AbstractDefinition{
 
     private void setBody(List<Statement> body) {
         this.body = new ArrayList<>(body);
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

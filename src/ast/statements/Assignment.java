@@ -2,6 +2,7 @@ package ast.statements;
 
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
+import visitor.Visitor;
 
 public class Assignment extends AbstractLocutable implements Statement{
     private Expression left;
@@ -33,4 +34,8 @@ public class Assignment extends AbstractLocutable implements Statement{
         this.right = right;
     }
 
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
+    }
 }

@@ -2,6 +2,7 @@ package ast.statements;
 
 import ast.AbstractLocutable;
 import ast.expressions.Expression;
+import visitor.Visitor;
 
 public class Read extends AbstractLocutable implements Statement {
     private Expression argument;
@@ -20,5 +21,10 @@ public class Read extends AbstractLocutable implements Statement {
     private void setArgument(Expression argument) {
         if(argument == null)
             throw new IllegalArgumentException("Parameter cannot be null");
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }
