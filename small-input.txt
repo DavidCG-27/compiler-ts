@@ -1,0 +1,12 @@
+
+function f(n: int,r: number): int {
+  	let real: number;
+  	let c1, c2: char;
+	c1 = (n as char);
+  	real = (c1 as number) + (n as number) + r;
+  	p(); // Invocation as a statement
+  	return (c1 as int);
+}
+
+// Main function definition
+function main(): void{}
