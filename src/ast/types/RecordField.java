@@ -2,6 +2,7 @@ package ast.types;
 
 
 import ast.AbstractLocutable;
+import visitor.Visitor;
 
 public class RecordField extends AbstractLocutable {
     private String fieldName;
@@ -29,5 +30,10 @@ public class RecordField extends AbstractLocutable {
 
     private void setFieldName(String fieldName) {
         this.fieldName = fieldName;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

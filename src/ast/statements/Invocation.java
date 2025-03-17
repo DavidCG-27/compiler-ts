@@ -1,6 +1,6 @@
 package ast.statements;
 
-import ast.AbstractLocutable;
+import ast.expressions.AbstractExpression;
 import ast.expressions.Expression;
 import ast.expressions.Variable;
 import visitor.Visitor;
@@ -8,7 +8,7 @@ import visitor.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Invocation extends AbstractLocutable implements Statement, Expression {
+public class Invocation extends AbstractExpression implements Statement {
     private List<Expression> arguments;
     private Variable name;
     public Invocation(int line, int column, Variable name, List<Expression> arguments) {

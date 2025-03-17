@@ -21,6 +21,7 @@ public class Read extends AbstractLocutable implements Statement {
     private void setArgument(Expression argument) {
         if(argument == null)
             throw new IllegalArgumentException("Parameter cannot be null");
+        this.argument = argument;
     }
 
     @Override
