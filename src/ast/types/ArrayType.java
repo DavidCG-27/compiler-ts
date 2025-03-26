@@ -1,5 +1,7 @@
 package ast.types;
 
+import visitor.Visitor;
+
 public class ArrayType implements Type {
     private Type type;
     private int length;
@@ -23,5 +25,10 @@ public class ArrayType implements Type {
 
     private void setLength(int length) {
         this.length = length;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 }

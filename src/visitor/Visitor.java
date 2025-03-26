@@ -3,7 +3,7 @@ import ast.Program;
 import ast.definitions.*;
 import ast.expressions.*;
 import ast.statements.*;
-import ast.types.RecordField;
+import ast.types.*;
 
 public interface Visitor<RT, PT> {
     // Expresiones
@@ -35,6 +35,16 @@ public interface Visitor<RT, PT> {
 
     //RecordField
     public RT visit(RecordField r, PT p);
+
+    // Type
+    public RT visit(FunctionType f, PT p);
+    public RT visit(RecordType r, PT p);
+    public RT visit(ArrayType a, PT p);
+    public RT visit(CharType c, PT p);
+    public RT visit(ErrorType s, PT p);
+    public RT visit(IntType i, PT p);
+    public RT visit(NumberType n, PT p);
+    public RT visit(VoidType v, PT p);
 
     // Program
     public RT visit(Program a, PT p);

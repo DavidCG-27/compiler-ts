@@ -1,6 +1,7 @@
 package ast.types;
 
 import ast.definitions.VarDefinition;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,10 @@ public class FunctionType implements Type {
 
     public List<VarDefinition> getArguments() {
         return arguments;
+    }
+
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
+        return v.visit(this,p);
     }
 
 }

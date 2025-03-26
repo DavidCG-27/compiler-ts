@@ -1,5 +1,6 @@
 package ast.statements;
 
+import ast.definitions.Definition;
 import ast.expressions.AbstractExpression;
 import ast.expressions.Expression;
 import ast.expressions.Variable;
@@ -11,6 +12,7 @@ import java.util.List;
 public class Invocation extends AbstractExpression implements Statement {
     private List<Expression> arguments;
     private Variable name;
+
     public Invocation(int line, int column, Variable name, List<Expression> arguments) {
         super(line,column);
         if (arguments == null) {
