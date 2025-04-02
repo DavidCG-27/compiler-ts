@@ -1,9 +1,9 @@
 package ast.definitions;
 
-import ast.Locutable;
+import ast.Locatable;
 import ast.types.Type;
 
-public interface Definition extends Locutable {
+public interface Definition extends Locatable {
     public Type getType();
     public String getName();
     public int getScope();

@@ -19,7 +19,7 @@ varDefinition returns [List<VarDefinition> ast = new ArrayList<>()] locals [List
 ;
 
 functionDefinition returns [FunctionDefinition ast] locals [List<VarDefinition> args = new ArrayList<>(), List<Statement> body = new ArrayList<>(), Type t]:
-'function' NAME=ID '(' (P1=ID ':' t1=type {$args.add(new VarDefinition($P1.getLine(), $P1.getCharPositionInLine()+1, $P1.text, $t1.ast));} (',' PX=ID ':' tx=type {$args.add(new VarDefinition($PX.getLine(), $PX.getCharPositionInLine()+1, $PX.text, $tx.ast));})*)? ')' ':' ((simpleType {$t = $simpleType.ast;})|('void' {$t = VoidType.type;})) '{' (varDefinition {$body.addAll($varDefinition.ast);})* (statement {$body.addAll($statement.ast);})* '}' {$ast = new FunctionDefinition($NAME.getLine(), $NAME.getCharPositionInLine()+1,new FunctionType($t, $args), $NAME.text, $body);}
+'function' NAME=ID '(' (P1=ID ':' t1=simpleType {$args.add(new VarDefinition($P1.getLine(), $P1.getCharPositionInLine()+1, $P1.text, $t1.ast));} (',' PX=ID ':' tx=simpleType {$args.add(new VarDefinition($PX.getLine(), $PX.getCharPositionInLine()+1, $PX.text, $tx.ast));})*)? ')' ':' ((simpleType {$t = $simpleType.ast;})|('void' {$t = VoidType.type;})) '{' (varDefinition {$body.addAll($varDefinition.ast);})* (statement {$body.addAll($statement.ast);})* '}' {$ast = new FunctionDefinition($NAME.getLine(), $NAME.getCharPositionInLine()+1,new FunctionType($t, $args), $NAME.text, $body);}
 ;
 
 mainFunction returns [FunctionDefinition ast] locals [List<Statement> st = new ArrayList<>();]:

@@ -6,7 +6,6 @@ import ast.definitions.VarDefinition;
 import ast.expressions.*;
 import ast.statements.*;
 import ast.types.*;
-import symboltable.SymbolTable;
 
 public abstract class AbstractVisitor<RT,PT> implements Visitor<RT,PT>{
     @Override
@@ -160,7 +159,7 @@ public abstract class AbstractVisitor<RT,PT> implements Visitor<RT,PT>{
 
     @Override
     public RT visit(ArrayType a, PT p) {
-        a.getType().accept(this, p);
+        a.getOf().accept(this, p);
         return null;
     }
 

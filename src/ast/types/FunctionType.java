@@ -1,12 +1,14 @@
 package ast.types;
 
+import ast.Locatable;
 import ast.definitions.VarDefinition;
+import ast.expressions.Expression;
 import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FunctionType implements Type {
+public class FunctionType extends AbstractType {
     private Type returnType;
     private List<VarDefinition> arguments;
 
@@ -36,6 +38,22 @@ public class FunctionType implements Type {
 
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
         return v.visit(this,p);
+    }
+
+    @Override
+    public Type parenthesis(List<Expression> expressions, Locatable ast) {
+        if (expressions.size() != arguments.size()) {
+            return super.parenthesis(expressions, ast);
+        }
+        for (int i = 0; i < arguments.size(); i++) {
+            expressions.get(i).getType().mustBePromotes(arguments.get(i).getType(), ast);
+        }
+        return returnType;
+    }
+
+    @Override
+    public String toString() {
+        return "FunctionType";
     }
 
 }

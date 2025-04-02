@@ -1,10 +1,10 @@
 package ast.statements;
 
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import ast.expressions.Expression;
 import visitor.Visitor;
 
-public class Assignment extends AbstractLocutable implements Statement{
+public class Assignment extends AbstractStatement{
     private Expression left;
     private Expression right;
 

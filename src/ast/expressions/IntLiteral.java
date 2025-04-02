@@ -1,6 +1,5 @@
 package ast.expressions;
 
-import ast.AbstractLocutable;
 import visitor.Visitor;
 
 public class IntLiteral extends AbstractExpression {

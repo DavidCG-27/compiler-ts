@@ -1,10 +1,10 @@
 package ast.types;
 
 
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import visitor.Visitor;
 
-public class RecordField extends AbstractLocutable {
+public class RecordField extends AbstractLocatable {
     private String fieldName;
     private Type type;
 
@@ -36,4 +36,6 @@ public class RecordField extends AbstractLocutable {
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
         return v.visit(this,p);
     }
+
+
 }

@@ -310,10 +310,10 @@ public class TSmmParser extends Parser {
 		public Type t;
 		public Token NAME;
 		public Token P1;
-		public TypeContext t1;
-		public Token PX;
-		public TypeContext tx;
+		public SimpleTypeContext t1;
 		public SimpleTypeContext simpleType;
+		public Token PX;
+		public SimpleTypeContext tx;
 		public VarDefinitionContext varDefinition;
 		public StatementContext statement;
 		public List<TerminalNode> ID() { return getTokens(TSmmParser.ID); }
@@ -332,14 +332,11 @@ public class TSmmParser extends Parser {
 		public StatementContext statement(int i) {
 			return getRuleContext(StatementContext.class,i);
 		}
-		public List<TypeContext> type() {
-			return getRuleContexts(TypeContext.class);
+		public List<SimpleTypeContext> simpleType() {
+			return getRuleContexts(SimpleTypeContext.class);
 		}
-		public TypeContext type(int i) {
-			return getRuleContext(TypeContext.class,i);
-		}
-		public SimpleTypeContext simpleType() {
-			return getRuleContext(SimpleTypeContext.class,0);
+		public SimpleTypeContext simpleType(int i) {
+			return getRuleContext(SimpleTypeContext.class,i);
 		}
 		public FunctionDefinitionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -383,7 +380,7 @@ public class TSmmParser extends Parser {
 				setState(55);
 				match(T__2);
 				setState(56);
-				((FunctionDefinitionContext)_localctx).t1 = type();
+				((FunctionDefinitionContext)_localctx).t1 = ((FunctionDefinitionContext)_localctx).simpleType = simpleType();
 				_localctx.args.add(new VarDefinition(((FunctionDefinitionContext)_localctx).P1.getLine(), ((FunctionDefinitionContext)_localctx).P1.getCharPositionInLine()+1, (((FunctionDefinitionContext)_localctx).P1!=null?((FunctionDefinitionContext)_localctx).P1.getText():null), ((FunctionDefinitionContext)_localctx).t1.ast));
 				setState(66);
 				_errHandler.sync(this);
@@ -398,7 +395,7 @@ public class TSmmParser extends Parser {
 					setState(60);
 					match(T__2);
 					setState(61);
-					((FunctionDefinitionContext)_localctx).tx = type();
+					((FunctionDefinitionContext)_localctx).tx = ((FunctionDefinitionContext)_localctx).simpleType = simpleType();
 					_localctx.args.add(new VarDefinition(((FunctionDefinitionContext)_localctx).PX.getLine(), ((FunctionDefinitionContext)_localctx).PX.getCharPositionInLine()+1, (((FunctionDefinitionContext)_localctx).PX!=null?((FunctionDefinitionContext)_localctx).PX.getText():null), ((FunctionDefinitionContext)_localctx).tx.ast));
 					}
 					}
@@ -1592,9 +1589,9 @@ public class TSmmParser extends Parser {
 		"\u0003\u0000\u0000/0\u0003\b\u0004\u000001\u0005\u0004\u0000\u000012\u0006"+
 		"\u0001\uffff\uffff\u00002\u0003\u0001\u0000\u0000\u000034\u0005\u0005"+
 		"\u0000\u000045\u0005)\u0000\u00005E\u0005\u0006\u0000\u000067\u0005)\u0000"+
-		"\u000078\u0005\u0003\u0000\u000089\u0003\b\u0004\u00009B\u0006\u0002\uffff"+
+		"\u000078\u0005\u0003\u0000\u000089\u0003\n\u0005\u00009B\u0006\u0002\uffff"+
 		"\uffff\u0000:;\u0005\u0002\u0000\u0000;<\u0005)\u0000\u0000<=\u0005\u0003"+
-		"\u0000\u0000=>\u0003\b\u0004\u0000>?\u0006\u0002\uffff\uffff\u0000?A\u0001"+
+		"\u0000\u0000=>\u0003\n\u0005\u0000>?\u0006\u0002\uffff\uffff\u0000?A\u0001"+
 		"\u0000\u0000\u0000@:\u0001\u0000\u0000\u0000AD\u0001\u0000\u0000\u0000"+
 		"B@\u0001\u0000\u0000\u0000BC\u0001\u0000\u0000\u0000CF\u0001\u0000\u0000"+
 		"\u0000DB\u0001\u0000\u0000\u0000E6\u0001\u0000\u0000\u0000EF\u0001\u0000"+

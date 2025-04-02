@@ -2,7 +2,7 @@ package ast.types;
 
 import visitor.Visitor;
 
-public class VoidType implements Type {
+public class VoidType extends AbstractType {
     //Singleton
     public static VoidType type = new VoidType();
     private VoidType() {}
@@ -10,4 +10,9 @@ public class VoidType implements Type {
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
         return v.visit(this,p);
     }
+    @Override
+    public String toString() {
+        return "ArrayType";
+    }
+
 }

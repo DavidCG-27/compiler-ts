@@ -1,0 +1,9 @@
+
+let v:[10]int;
+
+function main(): void {
+  let i:int;
+  i[0] = 0;		// Error 1. El tipo int no soporta el acceso a array. i[0] es ErrorType
+  v[3] = 3.4;		// Error 2. El tipo de la derecha no coincide con el de la izquierda
+  v[1][2] = 'a';	// Error 3. El tipo int no soporta '[]'.
+}

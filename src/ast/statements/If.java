@@ -1,13 +1,13 @@
 package ast.statements;
 
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import ast.expressions.Expression;
 import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class If extends AbstractLocutable implements Statement {
+public class If extends AbstractStatement {
     private List<Statement> thenPart;
     private List<Statement> elsePart;
     private Expression condition;

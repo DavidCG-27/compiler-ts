@@ -1,7 +1,5 @@
 package ast.expressions;
 
-import ast.AbstractLocutable;
-
 public abstract class AbstractOperation extends AbstractExpression {
 
     private String operation;

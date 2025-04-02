@@ -1,0 +1,22 @@
+
+let i:int;
+
+function f(a:int): int {
+  let a:number;					// Error 1. "a" duplicada en el mismo scope
+  return 34.5;					// Error 2. Tipo de retorno de la función no coincide con el tipo de la variable a retornar (int no coincide con double)
+}
+
+function g(b:int, b:number): void{		// Error 3. Dos parámetros con el mismo nombre
+  return 3;					// Error 4. Tipo de retorno de la función no coincide con el tipo de la variable a retornar (int no coincide con void)
+}
+
+function g(): void{				// Error 5. Ya existe una declaración para la función g.
+}
+
+function main(): void{
+  f();       					// Error 6. Se esperaba un argumento de tipo int.
+  f(3.2);    					// Error 7. El tipo de parámetros y argumentos no coinciden.
+  i = g();     					// Error 8. El tipo de la derecha de la asignación no coincide con el de la izquierda.
+  i();						// Error 9. El tipo de 'i' no soporta el operador '()'.
+  f = g;					// Error 10. El tipo función no soporta la asignación.
+}

@@ -5,6 +5,7 @@ import ast.types.Type;
 import visitor.Visitor;
 
 public class VarDefinition extends AbstractDefinition implements Statement {
+    private Type returnType;
     public VarDefinition(int line, int column, String name, Type type) {
         super(line, column, type, name);
     }
@@ -14,4 +15,13 @@ public class VarDefinition extends AbstractDefinition implements Statement {
         return v.visit(this,p);
     }
 
+    @Override
+    public Type getReturnType() {
+        return returnType;
+    }
+
+    @Override
+    public void setReturnType(Type returnType) {
+        this.returnType = returnType;
+    }
 }

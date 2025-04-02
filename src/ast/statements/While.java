@@ -1,13 +1,13 @@
 package ast.statements;
 
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import ast.expressions.Expression;
 import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class While extends AbstractLocutable implements Statement{
+public class While extends AbstractStatement{
     private List<Statement> body;
     private Expression condition;
 

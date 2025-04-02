@@ -1,6 +1,6 @@
 package ast;
 
-public interface Locutable extends ASTNode{
+public interface Locatable extends ASTNode{
     public int getLine();
     public int getColumn();
 }

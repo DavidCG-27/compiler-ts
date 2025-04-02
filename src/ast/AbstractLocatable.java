@@ -1,10 +1,10 @@
 package ast;
 
-public abstract class AbstractLocutable implements Locutable {
+public abstract class AbstractLocatable implements Locatable {
     private int line;
     private int column;
 
-    public AbstractLocutable(int line, int column) {
+    public AbstractLocatable(int line, int column) {
         this.line = line;
         this.column = column;
     }

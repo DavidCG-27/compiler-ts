@@ -1,6 +1,5 @@
 package ast.expressions;
 
-import ast.AbstractLocutable;
 import ast.definitions.Definition;
 import visitor.Visitor;
 

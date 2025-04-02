@@ -4,6 +4,7 @@ import ast.definitions.Definition;
 import ast.expressions.AbstractExpression;
 import ast.expressions.Expression;
 import ast.expressions.Variable;
+import ast.types.Type;
 import visitor.Visitor;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Invocation extends AbstractExpression implements Statement {
     private List<Expression> arguments;
     private Variable name;
+    private Type returnType;
 
     public Invocation(int line, int column, Variable name, List<Expression> arguments) {
         super(line,column);
@@ -42,6 +44,14 @@ public class Invocation extends AbstractExpression implements Statement {
             throw new IllegalArgumentException("name cannot be null");
         }
         this.name = name;
+    }
+
+    public Type getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(Type returnType) {
+        this.returnType = returnType;
     }
 
     @Override

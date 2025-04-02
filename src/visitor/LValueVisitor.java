@@ -5,8 +5,7 @@ import ast.definitions.FunctionDefinition;
 import ast.definitions.VarDefinition;
 import ast.expressions.*;
 import ast.statements.*;
-import ast.types.ErrorType;
-import ast.types.RecordField;
+import ast.types.*;
 import errorhandler.ErrorHandler;
 
 public class LValueVisitor extends AbstractVisitor<Void, Void> {
@@ -94,7 +93,7 @@ public class LValueVisitor extends AbstractVisitor<Void, Void> {
     public Void visit(Read r, Void p) {
         super.visit(r, p);
         if(!r.getArgument().getLValue()){
-            new ErrorType("Argumento no se puede escribir (no es LValue)", r);
+            new ErrorType("Argument cannot be written (not LValue)", r);
         }
         return null;
     }
@@ -103,7 +102,7 @@ public class LValueVisitor extends AbstractVisitor<Void, Void> {
     public Void visit(Assignment a, Void p) {
         super.visit(a, p);
         if(!a.getLeft().getLValue()){
-            new ErrorType("Parte izquierda no es LValue", a);
+            new ErrorType("Left side is not LValue", a);
         }
         return null;
     }

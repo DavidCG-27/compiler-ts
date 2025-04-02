@@ -1,8 +1,8 @@
 package ast.definitions;
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import ast.types.Type;
 
-public abstract class AbstractDefinition extends AbstractLocutable implements Definition {
+public abstract class AbstractDefinition extends AbstractLocatable implements Definition {
 
     private Type type;
     private String name;

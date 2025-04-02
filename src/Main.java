@@ -7,6 +7,7 @@ import parser.TSmmLexer;
 import parser.TSmmParser;
 import visitor.IdentificationVisitor;
 import visitor.LValueVisitor;
+import visitor.TypeCheckingVisitor;
 import visitor.Visitor;
 
 public class Main {
@@ -32,6 +33,9 @@ public class Main {
 		Visitor lValueVisitor = new LValueVisitor();
 		//NO HACER --> lValueVisitor.visit(ast);
 		ast.accept(lValueVisitor, null);
+
+		Visitor typeCheckingVisitor = new TypeCheckingVisitor();
+		ast.accept(typeCheckingVisitor, null);
 
 		// * Check errors
 		if(ErrorHandler.getInstance().anyError()){

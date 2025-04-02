@@ -1,33 +1,32 @@
 package ast.expressions;
 
-import ast.AbstractLocutable;
 import ast.types.Type;
 import visitor.Visitor;
 
 public class Cast extends AbstractExpression {
     private Expression expression;
-    private Type type;
+    private Type castType;
 
     public Cast(int line, int column, Expression expression, Type type) {
         super(line, column);
         this.expression = expression;
-        this.type = type;
+        this.castType = type;
     }
 
     public Expression getExpression() {
         return expression;
     }
 
-    public Type getType() {
-        return type;
+    public Type getCastType() {
+        return castType;
     }
 
     private void setExpression(Expression expression) {
         this.expression = expression;
     }
 
-    private void setType(Type type) {
-        this.type = type;
+    private void setCastType(Type castType) {
+        this.castType = castType;
     }
 
     @Override

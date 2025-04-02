@@ -1,10 +1,10 @@
 package ast.statements;
 
-import ast.AbstractLocutable;
+import ast.AbstractLocatable;
 import ast.expressions.Expression;
 import visitor.Visitor;
 
-public class Return extends AbstractLocutable implements Statement {
+public class Return extends AbstractStatement {
     private Expression returnPart;
 
     public Return(int line, int column, Expression returnPart) {
