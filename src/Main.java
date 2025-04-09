@@ -5,10 +5,7 @@ import ast.ASTNode;
 import errorhandler.ErrorHandler;
 import parser.TSmmLexer;
 import parser.TSmmParser;
-import visitor.IdentificationVisitor;
-import visitor.LValueVisitor;
-import visitor.TypeCheckingVisitor;
-import visitor.Visitor;
+import visitor.*;
 
 public class Main {
 
@@ -37,6 +34,9 @@ public class Main {
 		Visitor typeCheckingVisitor = new TypeCheckingVisitor();
 		ast.accept(typeCheckingVisitor, null);
 
+		Visitor offsetVisitor = new OffsetVisitor();
+		ast.accept(offsetVisitor, null);
+
 		// * Check errors
 		if(ErrorHandler.getInstance().anyError()){
 			// * Show errors
@@ -46,6 +46,7 @@ public class Main {
 			// * The AST is shown
 			IntrospectorModel model=new IntrospectorModel("Program", ast);
 			new IntrospectorView("Introspector", model);
+			// Ejecutar aquí la generación de código
 		}
 	}
 }

@@ -41,4 +41,9 @@ public class NumberType extends AbstractType{
     public String toString() {
         return "NumberType";
     }
+
+    @Override
+    public int getSize() {
+        return 4;
+    }
 }

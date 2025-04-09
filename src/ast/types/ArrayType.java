@@ -44,4 +44,9 @@ public class ArrayType extends AbstractType {
     public String toString() {
         return "ArrayType";
     }
+
+    @Override
+    public int getSize(){
+        return length*of.getSize();
+    }
 }

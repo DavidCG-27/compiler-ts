@@ -47,7 +47,7 @@ public class LValueVisitor extends AbstractVisitor<Void, Void> {
     @Override
     public Void visit(FieldAccess f, Void p) {
         super.visit(f, p);
-        f.setLValue(false);
+        f.setLValue(true);
         return null;
     }
 

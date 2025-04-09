@@ -51,7 +51,7 @@ public abstract class AbstractType implements Type {
         if (t instanceof ErrorType) {
             return;
         }
-        new ErrorType(this.toString() + " cannot be promotes", l);
+        new ErrorType("Cannot convert from "+t.toString()+" to "+this.toString()+", this operation is not supported", l);
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class AbstractType implements Type {
         if (argTypes.length() == 0) {
             argTypes.append("any argument received");
         }
-        return new ErrorType("Error in received arguments: " + argTypes.toString(), locatable);
+        return new ErrorType(this.toString()+" does not support the dot operator", locatable);
     }
 
     @Override

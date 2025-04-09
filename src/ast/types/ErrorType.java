@@ -78,4 +78,9 @@ public class ErrorType extends AbstractType{
     public Type parenthesis(List<Expression> arguments, Locatable locatable) {
         return this;
     }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
 }

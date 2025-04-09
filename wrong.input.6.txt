@@ -7,6 +7,6 @@ function f(): void{
 
 function main(): void {
   a1 = a2;		// Error 1. El tipo Array no soporta la asignación.
-  log a1;		// Error 2. Lvalue
-  log f();		// Error 3. Lvalue
+  log a1;		// Error 2.
+  log f();		// Error 3.
 }

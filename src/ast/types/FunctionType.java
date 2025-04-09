@@ -41,12 +41,12 @@ public class FunctionType extends AbstractType {
     }
 
     @Override
-    public Type parenthesis(List<Expression> expressions, Locatable ast) {
+    public Type parenthesis(List<Expression> expressions, Locatable locatable) {
         if (expressions.size() != arguments.size()) {
-            return super.parenthesis(expressions, ast);
+            return new ErrorType("The function expects "+arguments.size()+" arguments but "+expressions.size()+" were received",locatable);
         }
         for (int i = 0; i < arguments.size(); i++) {
-            expressions.get(i).getType().mustBePromotes(arguments.get(i).getType(), ast);
+            expressions.get(i).getType().mustBePromotes(arguments.get(i).getType(), locatable);
         }
         return returnType;
     }
@@ -54,6 +54,11 @@ public class FunctionType extends AbstractType {
     @Override
     public String toString() {
         return "FunctionType";
+    }
+
+    @Override
+    public int getSize() {
+        return 0;
     }
 
 }

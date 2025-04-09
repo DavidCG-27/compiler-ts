@@ -73,4 +73,9 @@ public class IntType extends AbstractType {
     @Override
     public void mustBeBuiltIn(Locatable locatable) {
     }
+
+    @Override
+    public int getSize() {
+        return 2;
+    }
 }

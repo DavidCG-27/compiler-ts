@@ -12,7 +12,12 @@ public class VoidType extends AbstractType {
     }
     @Override
     public String toString() {
-        return "ArrayType";
+        return "VoidType";
+    }
+
+    @Override
+    public int getSize() {
+        return 0;
     }
 
 }

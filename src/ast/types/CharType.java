@@ -35,4 +35,9 @@ public class CharType extends AbstractType {
     public String toString() {
         return "CharType";
     }
+
+    @Override
+    public int getSize() {
+        return 1;
+    }
 }

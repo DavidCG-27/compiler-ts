@@ -4,7 +4,7 @@ let real:number;
 
 function main(): void{
   input integer; 
-  character = 8.5;	// Error 1 error de tipo. El ErrorType no se le asigna a nadie
+  character = 8.5;	// Error 1 error de tipo.
   3 = integer;		// Error 2 error lvalue
   input integer+2; 	// Error 3 error lvalue
 }

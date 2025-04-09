@@ -27,7 +27,7 @@ public class RecordType extends AbstractType {
     @Override
     public Type dot(String fillName, Locatable l) {
         for (RecordField r : recordFields) {
-            if (!r.getName().equals(fillName)) {
+            if (r.getName().equals(fillName)) {
                 return r.getType();
             }
         }
@@ -38,5 +38,14 @@ public class RecordType extends AbstractType {
     @Override
     public String toString() {
         return "RecordType";
+    }
+
+    @Override
+    public int getSize() {
+        int size = 0;
+        for (RecordField r : recordFields) {
+            size += r.getType().getSize();
+        }
+        return size;
     }
 }

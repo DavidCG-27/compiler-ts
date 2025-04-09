@@ -6,6 +6,7 @@ import visitor.Visitor;
 
 public class VarDefinition extends AbstractDefinition implements Statement {
     private Type returnType;
+    private int offset;
     public VarDefinition(int line, int column, String name, Type type) {
         super(line, column, type, name);
     }
@@ -23,5 +24,13 @@ public class VarDefinition extends AbstractDefinition implements Statement {
     @Override
     public void setReturnType(Type returnType) {
         this.returnType = returnType;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 }
