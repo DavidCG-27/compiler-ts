@@ -38,6 +38,14 @@ public class NumberType extends AbstractType{
     }
 
     @Override
+    public Type canBeCastTo(Type t, Locatable locatable) {
+        if(t == this || t == IntType.type || t == CharType.type){
+            return t;
+        }
+        return super.canBeCastTo(t, locatable);
+    }
+
+    @Override
     public String toString() {
         return "NumberType";
     }
@@ -45,5 +53,10 @@ public class NumberType extends AbstractType{
     @Override
     public int getSize() {
         return 4;
+    }
+
+    @Override
+    public String suffix(){
+        return "f";
     }
 }

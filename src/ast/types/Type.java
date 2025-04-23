@@ -20,5 +20,7 @@ public interface Type extends ASTNode {
     public Type dot(String fillName, Locatable locatable);
     public Type parenthesis(List<Expression> arguments, Locatable locatable);
 
+    public String suffix();
+
     public int getSize();
 }

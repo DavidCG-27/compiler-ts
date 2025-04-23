@@ -1,0 +1,48 @@
+G: 
+	(1) IntLiteral: expression -> INT_CONSTANT
+	(2) CharLiteral: expression -> CHAR_CONSTANT
+	(3) NumberLiteral: expression -> NUMBER_CONSTANT
+	(4) Variable: expression -> ID 
+	(5) Cast: expression1 -> expression2 type
+	(6) FieldAccess: expression1 -> expression2 ID
+	(7) Arithmetic: expression1 -> expression2 (+|-|*|/) expression3
+	(8) Comparison: expression1 -> expression2 (>=|<=|>|<) expression3
+	(9) ArrayAccess: expression1 -> expression2 expression3
+	(10) Logic: expression1 -> expression2 (&& | ||) expression3
+	(11) UnaryMinus: expression1 -> expression2
+	(12) UnaryNot: expression1 -> expression2
+	(13) Write: statement -> expression
+	(14) Read: statement -> expression
+	(15) While: statement1 -> expression statement2*
+	(16) If: statement1 -> expression statement2*
+	(17) Assignment: statement1 -> expression1 expression2
+	(18) Invocation: expression1 -> expression2 expression3*
+	(19) Return: statement -> expression
+	(20) FunctionDefinition: definition -> ID type statement*
+A: 
+	{expression.type, statement.returnType} ambos de dominio Type
+R:
+	(1) expression.type = IntType
+	(2) expression.type = CharType
+	(3) expression.type = NumberType
+	(4) expression.type = expression.definition.type
+	(5) expression1.type = expression2.type.canBeCastTo(type)
+	(6) expression1.type = expression2.type.dot(ID)
+	(7) expression1.type = expression2.arithmetic(expression3.type)
+	(8) expression1.type = expression2.comparison(expression3.type)
+	(9) expression1.type = expression2.type.squareBrackets(expression3.type)
+	(10) expression1.type = expression2.type.logic(expression3.type)
+	(11) expression1.type = expression2.type.arithmetic()
+	(12) expression1.type = expression2.type.logic()
+	(13) expression.type.mustBeBuiltIn()
+	(14) expression.type.mustBeBuiltIn()
+	(15) expression.type.mustBeLogical()
+	(16) expression.type.mustBeLogical()
+	(17) expression1.type.mustBePromotes(expression2.type)
+	(18) expression1.type = expression2.type.parenthesis(expression3*) 
+	(19) expression.type.mustBePromotes(statement.returnType)
+	(20) statement*.forEach(s => s.returnType = type.returnType)
+	
+
+	
+

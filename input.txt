@@ -1,29 +1,28 @@
-// Global variables
-let i: int;						
-let r: number; 						
-let c: char; 						
+let c: char;
+let i: int;
+let r: number;
 
-// Functions
-function f(pi:int, pr:number): int {	   
-  let lr:number; 						
-  let li:int;							
-  
-  li = pi;
-  lr = pr;
-  return pi;
-}
-
-// Main program
-function main(): void{							
-  let pair: [ 	   				
-    let integer:int;						
-    let character:char;	
-  ];
+function main(): void{
+	let a, i:int;
 	
-  i = 3;
-  c = 'a';
-  r = 3.8;
-  pair.integer = i;
-  pair.character = c;
-  f(i, r);
+	c = 'a';
+	log c,'\n';
+
+	a = 1;
+	i = ('0' as int) * 3;
+	log a, ' ', i, '\n';
+		
+	input r;
+	log (2 as number) * r, '\n';
+	
+	log (3 as number) - 4.5, ' ', 
+            ('0' as number) / 48.0, ' ',
+            ('0' as int) % ('1' as int), ' ',
+            0 + ('1' as int), '\n';
+	log 1 < 2, ' ',
+	      4 >= 3, ' ',
+	      5 == 5, ' ',
+	      1 && 2, ' ',
+	      0 || 3, ' ',
+	      !0, '\n';
 }

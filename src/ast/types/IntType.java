@@ -52,7 +52,7 @@ public class IntType extends AbstractType {
 
     @Override
     public Type canBeCastTo(Type t, Locatable locatable) {
-        if(t == this || t == NumberType.type){
+        if(t == this || t == NumberType.type || t == CharType.type){
             return t;
         }
         return super.canBeCastTo(t, locatable);
@@ -77,5 +77,10 @@ public class IntType extends AbstractType {
     @Override
     public int getSize() {
         return 2;
+    }
+
+    @Override
+    public String suffix(){
+        return "i";
     }
 }

@@ -3,18 +3,18 @@ package ast.expressions;
 import visitor.Visitor;
 
 public class NumberLiteral extends AbstractExpression {
-    private Number value;
+    private double value;
 
-    public NumberLiteral(int line, int column, Number value) {
+    public NumberLiteral(int line, int column, double value) {
         super(line, column);
         this.value = value;
     }
 
-    public Number getValue() {
+    public double getValue() {
         return value;
     }
 
-    private void setValue(Number value) {
+    private void setValue(double value) {
         this.value = value;
     }
     @Override

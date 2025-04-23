@@ -100,4 +100,10 @@ public abstract class AbstractType implements Type {
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT p) {
         return null;
     }
+
+    @Override
+    public String suffix(){
+        throw new RuntimeException("This type don't support suffixing");
+    }
 }
+

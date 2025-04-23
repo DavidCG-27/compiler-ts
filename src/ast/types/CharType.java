@@ -37,7 +37,20 @@ public class CharType extends AbstractType {
     }
 
     @Override
+    public Type canBeCastTo(Type t, Locatable locatable) {
+        if(t == this || t == NumberType.type || t == IntType.type){
+            return t;
+        }
+        return super.canBeCastTo(t, locatable);
+    }
+
+    @Override
     public int getSize() {
         return 1;
+    }
+
+    @Override
+    public String suffix(){
+        return "b";
     }
 }

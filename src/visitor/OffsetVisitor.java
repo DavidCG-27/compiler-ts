@@ -27,6 +27,7 @@ public class OffsetVisitor extends AbstractVisitor<Void, Void> {
         countSizeLocal = 0;
         f.getType().accept(this, p);
         f.getBody().forEach(s -> s.accept(this, p));
+        f.setLocalBytesSum(-countSizeLocal);
         return null;
     }
 
