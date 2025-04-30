@@ -1,4 +1,4 @@
-// Algoritmo de Dijkstra
+// Algoritmo de Dijkstra by David Covián Gómez
 
 let MAX_NODES:int;
 let INFINITY:int;
@@ -9,6 +9,7 @@ let visited:[10]int;
 let previous:[10]int;
 let startNode:int;
 let numNodes:int;
+let directed:int;
 
 function initGraph(): void {
     let i,j:int;
@@ -32,7 +33,9 @@ function initGraph(): void {
 function addEdge(src:int, dest:int, weight:int): void {
     if (src >= 0 && src < numNodes && dest >= 0 && dest < numNodes) {
         graph[src][dest] = weight;
-        graph[dest][src] = weight;
+        if(directed!=0){
+            graph[dest][src] = weight;
+        }
     }
 }
 
@@ -125,6 +128,15 @@ function main(): void {
     INFINITY = 9999;
     numNodes = 5;
     startNode = 0;
+
+    log '0',' ','p','a','r','a',' ','g','r','a','f','o',' ','d','i','r','i','g','i','d','o',' ','\n','C','u','a','l','q','u','i','e','r',' ','o','t','r','o',' ','p','a','r','a',' ','g','r','a','f','o',' ','N','O',' ','d','i','r','i','g','i','d','o','\n';
+
+    input directed;
+    if (directed == 0){
+        log 'N','O',' ','D','I','R','I','G','I','D','O','\n';
+    } else{
+        log 'D','I','R','I','G','I','D','O','\n';
+    }
 
     initGraph();
 

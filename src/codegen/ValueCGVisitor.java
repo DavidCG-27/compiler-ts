@@ -90,10 +90,10 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void> {
     }
 
     /*
-        value[[FunctionInvocation: expression1 -> expression2 expression3*]]():
+        value[[Invocation: expression1 -> expression2 expression3*]]():
             for (int i = 0; i < expression3*.size(); i++) {
                 expression3*.get(i).accept(this, p);
-                this.cg.convertTo(expression3*.get(i).getType(),
+                cg.convertTo(expression3*.get(i).getType(),
                      ((FunctionType) expression2.getDefinition().getType()).getArguments().get(i).getType());
             }
             <call> expression2
