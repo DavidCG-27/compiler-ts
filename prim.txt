@@ -1,0 +1,109 @@
+// Algoritmo de Prim by David Covián Gómez
+
+let MAX_NODES:int;
+let INFINITY:int;
+let graph:[10][10]int;
+let numNodes:int;
+
+function initGraph(): void {
+    let i,j:int;
+    i = 0;
+    while (i < MAX_NODES) {
+        j = 0;
+        while (j < MAX_NODES) {
+            if (i == j) {
+                graph[i][j] = 0;
+            }
+            else {
+                graph[i][j] = INFINITY;
+            }
+            j=j+1;
+        }
+        i=i+1;
+    }
+}
+
+function addEdge(src:int, dest:int, weight:int): void {
+    if (src >= 0 && src < numNodes && dest >= 0 && dest < numNodes) {
+        graph[src][dest] = weight;
+        graph[dest][src] = weight;
+    }
+}
+
+function prim(): void {
+    let key:[10]int;
+    let parent:[10]int;
+    let inMST:[10]int;
+    let i, count, u, v, minKey, minIndex:int;
+    let totalWeight:int;
+
+    i = 0;
+    while (i < numNodes) {
+        key[i] = INFINITY;
+        inMST[i] = 0;
+        parent[i] = -1;
+        i = i + 1;
+    }
+
+    key[0] = 0;
+    totalWeight = 0;
+    count = 0;
+
+    while (count < numNodes - 1) {
+        minKey = INFINITY;
+        minIndex = -1;
+
+        u = 0;
+        while (u < numNodes) {
+            if (inMST[u] == 0 && key[u] < minKey) {
+                minKey = key[u];
+                minIndex = u;
+            }
+            u = u + 1;
+        }
+
+        u = minIndex;
+        inMST[u] = 1;
+
+        v = 0;
+        while (v < numNodes) {
+            if (graph[u][v] != INFINITY && inMST[v] == 0 && graph[u][v] < key[v]) {
+                key[v] = graph[u][v];
+                parent[v] = u;
+            }
+            v = v + 1;
+        }
+
+        count = count + 1;
+    }
+
+    log 'A','r','i','s','t','a','\t','P','e','s','o','\n';
+    i = 1;
+    while (i < numNodes) {
+        if (parent[i] != -1) {
+            log parent[i],'-',i,' ','\t',graph[i][parent[i]],'\n';
+            totalWeight = totalWeight + graph[i][parent[i]];
+        }
+        i = i + 1;
+    }
+
+    log 'P','e','s','o',' ','t','o','t','a','l',':',' ',totalWeight,'\n';
+}
+
+function main(): void {
+    MAX_NODES = 10;
+    INFINITY = 9999;
+    numNodes = 5;
+
+    initGraph();
+
+    addEdge(0, 1, 4);
+    addEdge(0, 2, 1);
+    addEdge(1, 2, 2);
+    addEdge(1, 3, 5);
+    addEdge(2, 3, 8);
+    addEdge(2, 4, 10);
+    addEdge(3, 4, 2);
+
+    prim();
+}

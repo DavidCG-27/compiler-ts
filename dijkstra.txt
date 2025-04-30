@@ -39,14 +39,10 @@ function addEdge(src:int, dest:int, weight:int): void {
     }
 }
 
-function minDistance(): int {
-    let min:int;
-    let minIndex:int;
-    let v:int;
-
+function getPivot(): int {
+    let min, minIndex, v:int;
     min = INFINITY;
     minIndex = 0;
-
     v = 0;
     while (v < numNodes) {
         if (visited[v] == 0 && distance[v] <= min) {
@@ -76,7 +72,7 @@ function dijkstra(start:int): void {
 
     i = 0;
     while (i < numNodes - 1) {
-        u = minDistance();
+        u = getPivot();
         visited[u] = 1;
 
         v = 0;
@@ -127,12 +123,17 @@ function main(): void {
     MAX_NODES = 10;
     INFINITY = 9999;
     numNodes = 5;
-    startNode = 0;
+    log 'N','o','d','o',' ','i','n','i','c','i','a','l','\n';
+    input startNode;
+    while (startNode >= numNodes || startNode < 0){
+        log 'E','R','R','O','R',':',' ','M','A','X','=',numNodes-1,' ','M','I','N','=','0','\n';
+        input startNode;
+    }
 
     log '0',' ','p','a','r','a',' ','g','r','a','f','o',' ','d','i','r','i','g','i','d','o',' ','\n','C','u','a','l','q','u','i','e','r',' ','o','t','r','o',' ','p','a','r','a',' ','g','r','a','f','o',' ','N','O',' ','d','i','r','i','g','i','d','o','\n';
 
     input directed;
-    if (directed == 0){
+    if (directed != 0){
         log 'N','O',' ','D','I','R','I','G','I','D','O','\n';
     } else{
         log 'D','I','R','I','G','I','D','O','\n';
