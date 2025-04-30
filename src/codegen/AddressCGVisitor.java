@@ -32,8 +32,8 @@ public class AddressCGVisitor extends AbstractCGVisitor<Void, Void> {
             cg.pusha(((VarDefinition)v.getDefinition()).getOffset());
         else {
             cg.pushbp();
-            cg.pusha(((VarDefinition) v.getDefinition()).getOffset());
-            cg.add(v.getDefinition().getType());
+            cg.pushi(((VarDefinition) v.getDefinition()).getOffset());
+            cg.add(IntType.type);
         }
         return arg;
     }
@@ -48,24 +48,30 @@ public class AddressCGVisitor extends AbstractCGVisitor<Void, Void> {
      */
     public Void visit(ArrayAccess a, Void p) {
         a.getArrayExpression().accept(this, p);
-        a.getIndexExpression().accept(valueCGVisitor, p);
         cg.pushi(a.getType().getSize());
+        a.getIndexExpression().accept(valueCGVisitor, p);
         cg.mul(IntType.type);
         cg.add(IntType.type);
         return null;
     }
 
     /*
-        address[[StructAccess: expression1 -> expression2 ID]]():
+        address[[FieldAccess: expression1 -> expression2 ID]]():
             address[[expression2]]
             <pushi> expression2.getType().getField(expression1.getName()).getOffset()
             <addi>
      */
-//    public Void visit(RecordField r, Void p) {
-//        r.getName().accept(this, p);
-//        this.cg.push(((RecordType) r.getName().getType()).getRecordFields().getOffset());
-//        this.cg.add(IntType.getInstance());
-//        return null;
-//    }
+    public Void visit(FieldAccess r, Void p) {
+        r.getLeft().accept(this, p);
+        int offset = 0;
+        for(var rf : ((RecordType) r.getLeft().getType()).getRecordFields()){
+            if(rf.getName().equalsIgnoreCase(r.getFillName())){
+                offset = rf.getOffset();
+            }
+        }
+        this.cg.pushi(offset);
+        this.cg.add(IntType.type);
+        return null;
+    }
 
 }

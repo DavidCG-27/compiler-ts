@@ -103,7 +103,7 @@ public abstract class AbstractType implements Type {
 
     @Override
     public String suffix(){
-        throw new RuntimeException("This type don't support suffixing");
+        throw new RuntimeException("This type don't support suffixing ("+this.toString()+")");
     }
 }
 

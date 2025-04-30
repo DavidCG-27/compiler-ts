@@ -15,9 +15,22 @@ public class CharType extends AbstractType {
     @Override
     public Type arithmetic(Type t, Locatable locatable) {
         if(this == t){
-            return t;
+            return IntType.type;
         }
         return super.arithmetic(t,locatable);
+    }
+
+    @Override
+    public Type comparison(Type t, Locatable locatable) {
+        if(this == t){
+            return IntType.type;
+        }
+        return super.arithmetic(t,locatable);
+    }
+
+    @Override
+    public Type arithmetic(Locatable locatable) {
+        return IntType.type;
     }
 
     @Override
@@ -43,7 +56,6 @@ public class CharType extends AbstractType {
         }
         return super.canBeCastTo(t, locatable);
     }
-
     @Override
     public int getSize() {
         return 1;

@@ -43,7 +43,7 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FunctionDefinition>
         cg.halt();
         for(Definition d : p.getDefinitions()){
             if(d instanceof FunctionDefinition){
-                d.accept(this, arg);
+                d.accept(this, (FunctionDefinition) d);
             }
         }
         return null;
@@ -74,6 +74,14 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FunctionDefinition>
         ((FunctionType) f.getType()).getArguments().forEach(a -> a.accept(this, arg));
         cg.comment("Local variables");
         f.getBody().forEach(l -> l.accept(this, arg));
+        if (((FunctionType) f.getType()).getReturnType() == VoidType.type){
+            int bReturn = 0;
+            int bLocals = f.getLocalBytesSum();
+            int bParams = 0;
+            for (VarDefinition v : ((FunctionType) f.getType()).getArguments())
+                bParams += v.getType().getSize();
+            cg.ret(bReturn, bLocals, bParams);
+        }
         return null;
     }
 
@@ -99,8 +107,8 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FunctionDefinition>
     public Void visit(Read r, FunctionDefinition arg) {
         cg.line(r.getLine());
         cg.comment("Read");
-        cg.in(r.getArgument().getType());
         r.getArgument().accept(addressCGVisitor, null);
+        cg.in(r.getArgument().getType());
         cg.store(r.getArgument().getType());
         return null;
     }
@@ -140,15 +148,22 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FunctionDefinition>
     public Void visit(If i, FunctionDefinition arg){
         cg.line(i.getLine());
         cg.comment("If");
-        String elsePart = cg.nextLabel();
         String end = cg.nextLabel();
-        i.getCondition().accept(valueCGVisitor, null);
-        cg.jz(elsePart);
-        i.getThenPart().forEach(t -> t.accept(this, arg));
-        cg.jmp(end);
-        cg.label(elsePart);
-        i.getElsePart().forEach(t -> t.accept(this, arg));
-        cg.label(end);
+        if(!i.getElsePart().isEmpty()) {
+            String elsePart = cg.nextLabel();
+            i.getCondition().accept(valueCGVisitor, null);
+            cg.jz(elsePart);
+            i.getThenPart().forEach(t -> t.accept(this, arg));
+            cg.jmp(end);
+            cg.label(elsePart);
+            i.getElsePart().forEach(t -> t.accept(this, arg));
+            cg.label(end);
+        } else{
+            i.getCondition().accept(valueCGVisitor, null);
+            cg.jz(end);
+            i.getThenPart().forEach(t -> t.accept(this, arg));
+            cg.label(end);
+        }
         return null;
     }
 

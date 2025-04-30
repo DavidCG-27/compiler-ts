@@ -1,0 +1,58 @@
+// Fibonacci
+
+let terms:int;
+let fibonacciSequence:[100]int;
+
+function fibonacci(n:int): int {
+    let i: int;
+    
+    if (n <= 0) {
+        return 0;
+    }
+    
+    fibonacciSequence[0] = 0;
+    
+    if (n == 1) {
+        return 0;
+    }
+    
+    fibonacciSequence[1] = 1;
+    
+    i = 2;
+    while (i < n) {
+        fibonacciSequence[i] = fibonacciSequence[i-1] + fibonacciSequence[i-2];
+        i = i + 1;
+    }
+    return 0;
+}
+
+function print(): void {
+    let i:int;
+
+    log 'S','e','c','u','e','n','c','i','a',' ','d','e',' ','F','i','b','o','n','a','c','c','i',' ','(', terms, ' ','t','e','r','m','s',')',':', '\n', '[';
+
+    i = 0;
+    while (i < terms) {
+        log fibonacciSequence[i];
+        if (i != (terms - 1)) {
+            log ',';
+        }
+        i = i + 1;
+    }
+    
+    log ']', '\n';
+}
+
+function main(): void {
+    terms = 10;  
+    
+    input terms;
+    
+    if (terms > 100) {
+        log 'E','r','r','o','r',':',' ','S','e',' ','p','e','r','m','i','t','e',' ','1','0','0',' ','c','o','m','o',' ','m','á','x','i','m','o','.',' ','C','a','l','c','u','l','a','n','d','o',' ','1','0','0',' ','e','l','e','m','e','n','t','o','s','.','.','.', '\n';
+        terms = 100;
+    }
+    
+    fibonacci(terms);
+    print();
+}

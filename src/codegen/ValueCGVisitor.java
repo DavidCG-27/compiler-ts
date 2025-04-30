@@ -4,7 +4,6 @@ import ast.expressions.*;
 import ast.statements.Invocation;
 import ast.types.FunctionType;
 import ast.types.IntType;
-import ast.types.RecordField;
 import visitor.AbstractVisitor;
 
 public class ValueCGVisitor extends AbstractCGVisitor<Void,Void> {
@@ -37,7 +36,7 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void> {
         a.getLeft().accept(this, p);
         cg.convertTo(a.getLeft().getType(), a.getType());
         a.getRight().accept(this, p);
-        cg.convertTo(a.getRight().getType(), a.getType());
+        //cg.convertTo(a.getRight().getType(), a.getType());
         cg.arithmetic(a.getOperation(), a.getType());
         return null;
     }
@@ -145,7 +144,7 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void> {
             address[[expression1]]
             <load> expression1.getType().getSuffix()
      */
-    public Void visit(RecordField r, Void p) {
+    public Void visit(FieldAccess r, Void p) {
         r.accept(addressCGVisitor, p);
         cg.load(r.getType());
         return null;

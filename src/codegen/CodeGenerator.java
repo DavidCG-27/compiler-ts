@@ -1,5 +1,8 @@
 package codegen;
 
+import ast.types.CharType;
+import ast.types.IntType;
+import ast.types.NumberType;
 import ast.types.Type;
 
 import java.io.PrintWriter;
@@ -110,6 +113,7 @@ public class CodeGenerator {
 
     /** ----------- ARITHMETIC OPERATIONS ----------- **/
 
+
     public void add(Type type){
         out.println("\t\tadd"+type.suffix());
         out.flush();
@@ -178,12 +182,12 @@ public class CodeGenerator {
     }
 
     public void eq(Type type){
-        out.println("\t\teq "+type.suffix());
+        out.println("\t\teq"+type.suffix());
         out.flush();
     }
 
     public void ne(Type type){
-        out.println("\t\tne "+type.suffix());
+        out.println("\t\tne"+type.suffix());
         out.flush();
     }
 
@@ -263,18 +267,45 @@ public class CodeGenerator {
         out.flush();
     }
 
-    public void convertTo(Type type1, Type type2){
-        if(type1.getSize() == 1 && type2.getSize() == 2){
-            this.b2i();
+//    public void convertTo(Type type1, Type type2){
+//        if(type1.getSize() == 1 && type2.getSize() == 2){
+//            this.b2i();
+//        }
+//        else if(type1.getSize() == 2 && type2.getSize() == 4){
+//            this.i2f();
+//        }
+//        else if(type1.getSize() == 4 && type2.getSize() == 2){
+//            this.f2i();
+//        }
+//        else if(type1.getSize() == 2 && type2.getSize() == 1){
+//            this.i2b();
+//        }
+//    }
+
+    public void convertTo(Type of, Type a){
+        if(of.suffix() == a.suffix()){
+            return;
         }
-        else if(type1.getSize() == 2 && type2.getSize() == 4){
-            this.i2f();
+        if(of instanceof CharType){
+            out.println("\tb2i");
+            if(a instanceof NumberType){
+                out.println("\ti2f");
+            }
         }
-        else if(type1.getSize() == 4 && type2.getSize() == 2){
-            this.f2i();
+
+        if(of instanceof IntType) {
+            if (a instanceof NumberType) {
+                out.println("\ti2f");
+            } else if(a instanceof CharType) {
+                out.println("\ti2b");
+            }
         }
-        else if(type1.getSize() == 2 && type2.getSize() == 1){
-            this.i2b();
+
+        if(of instanceof NumberType){
+            out.println("\tf2i");
+            if(a instanceof CharType){
+                out.println("\ti2b");
+            }
         }
     }
 
@@ -307,13 +338,13 @@ public class CodeGenerator {
     /** ----------- DEBUGGING INFO ----------- **/
 
     public void source(){
-        out.println("#source "+this.sourceFileName);
-        out.flush();
+//        out.println("#source "+this.sourceFileName);
+//        out.flush();
     }
 
     public void line(int line){
-        out.println("#line "+line);
-        out.flush();
+//        out.println("#line "+line);
+//        out.flush();
     }
 
 

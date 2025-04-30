@@ -109,6 +109,7 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void, Void> {
 
     @Override
     public Void visit(While w, Void p) {
+        w.getBody().forEach(s -> s.setReturnType(w.getReturnType()));
         super.visit(w, p);
         w.getCondition().getType().mustBeLogical(w);
         return p;
@@ -116,6 +117,8 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void, Void> {
 
     @Override
     public Void visit(If i, Void p) {
+        i.getThenPart().forEach(s -> s.setReturnType(i.getReturnType()));
+        i.getElsePart().forEach(s -> s.setReturnType(i.getReturnType()));
         super.visit(i, p);
         i.getCondition().getType().mustBeLogical(i);
         return p;
