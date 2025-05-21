@@ -8,7 +8,7 @@ import ast.statements.*;
 import ast.types.*;
 import visitor.Visitor;
 
-public class AbstractCGVisitor<RT,PT> implements Visitor<RT,PT> {
+public abstract class AbstractCGVisitor<RT,PT> implements Visitor<RT,PT> {
 
     CodeGenerator cg;
 
