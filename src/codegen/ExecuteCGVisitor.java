@@ -172,7 +172,7 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FunctionDefinition>
         <#line  > statement.getLine()
         <'  * Invocation>
         value[[(Expression) statement]]()
-             if (statement.getType() instanceof VoidType) {
+             if (!statement.getType() instanceof VoidType) {
                  <pop> statement.getType().getSuffix();
              }
      */
