@@ -13,6 +13,8 @@ Mediante el uso de ANTLR, se realiza el análisis léxico y sintáctico.
 El análisis semántico y generación de código se realiza mediante la implementación de Visitors.
 
 La generación de código tambien de realiza mediante la implementación de Visitors y el código generado es código MAPL (lenguaje máquina de la asignatura DLP).
+[!NOTE]
+> La descripción del lenguaj MAPL se encuentra en el fichero `description_mapl.txt`, en la raíz del proyecto.
 
 ## Sintaxis básica reconocida
 El lenguaje definido reconoce las siguientes sentencias:
